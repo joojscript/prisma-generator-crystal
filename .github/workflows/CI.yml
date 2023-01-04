@@ -30,6 +30,8 @@ jobs:
         with:
           path: "**/node_modules"
           key: ${{ runner.os }}-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
+      - name: Create dummy dist folder
+        run: mkdir -p ./packages/generator/dist
       - name: Install dependencies
         working-directory: ./packages/generator
         run: pnpm i --frozen-lockfile
