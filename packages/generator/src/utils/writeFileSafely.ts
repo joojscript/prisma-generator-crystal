@@ -7,5 +7,6 @@ export const writeFileSafely = async (writeLocation: string, content: any) => {
     recursive: true,
   })
 
-  fs.writeFileSync(writeLocation, await formatFile(content))
+  // fs.writeFileSync(writeLocation, await formatFile(content))
+  fs.writeFileSync(writeLocation, content)
 }

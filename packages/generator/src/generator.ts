@@ -17,15 +17,25 @@ generatorHandler({
     }
   },
   onGenerate: async (options: GeneratorOptions) => {
+    // options.dmmf.datamodel.models.forEach(async (model) => {
+    //   const tsModel = genModel(model)
+
+    //   const writeLocation = path.join(
+    //     options.generator.output?.value!,
+    //     `${model.name}.ts`,
+    //   )
+
+    //   await writeFileSafely(writeLocation, tsModel)
+    // });
     options.dmmf.datamodel.enums.forEach(async (enumInfo) => {
-      const tsEnum = genEnum(enumInfo)
+      const crystalEnum = genEnum(enumInfo)
 
       const writeLocation = path.join(
         options.generator.output?.value!,
-        `${enumInfo.name}.ts`,
+        `${enumInfo.name}.cr`,
       )
 
-      await writeFileSafely(writeLocation, tsEnum)
+      await writeFileSafely(writeLocation, crystalEnum)
     })
   },
 })

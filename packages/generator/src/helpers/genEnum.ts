@@ -1,7 +1,12 @@
 import { DMMF } from '@prisma/generator-helper'
+import { StringHelpers } from './strings'
 
 export const genEnum = ({ name, values }: DMMF.DatamodelEnum) => {
-  const enumValues = values.map(({ name }) => `${name}="${name}"`).join(',\n')
+  const enumValues = values
+    .map(({ name }) => StringHelpers.capitalize(name))
+    .join('\n  ')
 
-  return `enum ${name} { \n${enumValues}\n }`
+  return `enum ${StringHelpers.capitalize(name)} 
+  ${enumValues}
+end`
 }
