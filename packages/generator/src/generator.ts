@@ -19,7 +19,7 @@ generatorHandler({
       version,
       defaultOutput: '../generated',
       prettyName: GENERATOR_NAME,
-      requiresEngines: ['queryEngine'],
+      requiresEngines: ['queryEngine', 'libqueryEngine'],
     }
   },
   onGenerate: async (options: GeneratorOptions) => {
