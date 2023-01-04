@@ -15,7 +15,7 @@ export const TypeConvertions: _TypeConvertionsHelper = {
     DateTime: (inputValue: any) => 'Time',
   },
   convert: (inputType: string, inputValue: any) => {
-    return TypeConvertions.CONVERT_TABLE[inputType]?.(inputValue)
+    return TypeConvertions.CONVERT_TABLE[inputType]?.(inputValue) || inputType
   },
   fieldDefault: (inputValue: any) => {
     if (typeof inputValue === 'string') {

@@ -1,7 +1,6 @@
 generator custom_generator {
-  provider      = "npx prisma-generator-crystal"
-  output        = "../types"
-  binaryTargets = ["native", "linux-musl"]
+  provider = "prisma-generator-crystal"
+  output   = "../types"
 }
 
 datasource db {
