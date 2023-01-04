@@ -21,7 +21,7 @@
     "@prisma/client": "3.12.0",
     "@prisma/engines": "^4.8.0",
     "@prisma/generator-helper": "3.12.0",
-    "@prisma/sdk": "3.12.0",
+    "@prisma/sdk": "4.0.0",
     "prettier": "2.5.1"
   },
   "devDependencies": {
