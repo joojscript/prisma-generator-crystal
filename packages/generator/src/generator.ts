@@ -1,9 +1,14 @@
-import { generatorHandler, GeneratorOptions } from '@prisma/generator-helper'
+import {
+  DMMF,
+  generatorHandler,
+  GeneratorOptions,
+} from '@prisma/generator-helper'
 import { logger } from '@prisma/sdk'
 import path from 'path'
 import { GENERATOR_NAME } from './constants'
-import { genEnum } from './helpers/genEnum'
 import { writeFileSafely } from './utils/writeFileSafely'
+import Generators from './generators'
+import { genEnum } from './generators/genEnum'
 
 const { version } = require('../package.json')
 
@@ -17,25 +22,29 @@ generatorHandler({
     }
   },
   onGenerate: async (options: GeneratorOptions) => {
-    // options.dmmf.datamodel.models.forEach(async (model) => {
-    //   const tsModel = genModel(model)
+    for (const _metaType of ['models', 'enums']) {
+      const metaType = _metaType as 'models' | 'enums'
+      const meta = options.dmmf.datamodel[metaType]
+      if (meta.length === 0) {
+        logger.warn(
+          `${GENERATOR_NAME}: No ${metaType} found in your Prisma schema`,
+        )
+      }
 
-    //   const writeLocation = path.join(
-    //     options.generator.output?.value!,
-    //     `${model.name}.ts`,
-    //   )
+      for (const metaInfo of meta) {
+        logger.info(
+          `${GENERATOR_NAME}: Generating ${metaType} ${metaInfo.name}`,
+        )
 
-    //   await writeFileSafely(writeLocation, tsModel)
-    // });
-    options.dmmf.datamodel.enums.forEach(async (enumInfo) => {
-      const crystalEnum = genEnum(enumInfo)
+        const generated = Generators[metaType](metaInfo)
 
-      const writeLocation = path.join(
-        options.generator.output?.value!,
-        `${enumInfo.name}.cr`,
-      )
+        const writeLocation = path.join(
+          options.generator.output?.value!,
+          `${metaInfo.name}.cr`,
+        )
 
-      await writeFileSafely(writeLocation, crystalEnum)
-    })
+        await writeFileSafely(writeLocation, generated)
+      }
+    }
   },
 })
