@@ -8,6 +8,7 @@ import path from 'path'
 import { GENERATOR_NAME } from './constants'
 import { writeFileSafely } from './utils/writeFileSafely'
 import Generators from './generators'
+import { Handler } from '@prisma/generator-helper/dist/generatorHandler'
 
 const { version } = require('../package.json')
 
@@ -18,6 +19,7 @@ generatorHandler({
       version,
       defaultOutput: '../generated',
       prettyName: GENERATOR_NAME,
+      requiresEngines: ['queryEngine'],
     }
   },
   onGenerate: async (options: GeneratorOptions) => {
@@ -49,4 +51,4 @@ generatorHandler({
       }
     }
   },
-})
+} as Handler)
