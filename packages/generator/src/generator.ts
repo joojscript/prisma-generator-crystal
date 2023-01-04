@@ -36,7 +36,10 @@ generatorHandler({
           `${GENERATOR_NAME}: Generating ${metaType} ${metaInfo.name}`,
         )
 
-        const generated = Generators[metaType](metaInfo)
+        const generated = Generators[metaType](
+          metaInfo,
+          options.generator.config,
+        )
 
         const writeLocation = path.join(
           options.generator.output?.value!,

@@ -1,9 +1,9 @@
 import { genModel } from '../generators/genModel'
 import { genEnum } from '../generators/genEnum'
-import { DMMF, GeneratorOptions } from '@prisma/generator-helper'
+import { Dictionary } from '@prisma/sdk'
 
 export const Generators: {
-  [key: string]: (data: any, meta?: GeneratorOptions) => string
+  [key: string]: (data: any, meta?: Dictionary<string>) => string
 } = {
   models: genModel,
   enums: genEnum,
