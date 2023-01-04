@@ -35,8 +35,6 @@ jobs:
       - name: Install dependencies
         working-directory: ./packages/generator
         run: pnpm i --frozen-lockfile
-      - name: Prisma Generate
-        run: node ./packages/generator/node_modules/prisma/build/index.js generate --schema=packages/usage/prisma/schema.prisma
       - name: Run Tests 🧪
         working-directory: ./packages/generator
         run: pnpm test
