@@ -22,7 +22,7 @@ generatorHandler({
     }
   },
   onGenerate: async (options: GeneratorOptions) => {
-    for (const _metaType of ['models', 'enums']) {
+    for (const _metaType of ['models', 'enums', 'types']) {
       const metaType = _metaType as 'models' | 'enums'
       const meta = options.dmmf.datamodel[metaType]
       if (meta.length === 0) {

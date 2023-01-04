@@ -3,13 +3,13 @@ import { StringHelpers } from '../helpers/strings'
 import { TypeConvertions } from '../helpers/type-convertions'
 import { Dictionary } from '@prisma/sdk'
 
-export const genModel = (
+export const genType = (
   { name, fields }: DMMF.Model,
   meta: Dictionary<string>,
 ) => {
-  const modelName = StringHelpers.capitalize(name)
+  const typeName = StringHelpers.capitalize(name)
 
-  const modelFields = fields
+  const typeFields = fields
     .map(
       ({ name, type, isRequired, isList, hasDefaultValue, kind, ...rest }) => {
         const fieldName = StringHelpers.firstLowerCased(name)
@@ -28,7 +28,7 @@ export const genModel = (
     )
     .join('\n  ')
 
-  return `class ${modelName}
-  ${modelFields}
+  return `class ${typeName}Type
+  ${typeFields}
 end`
 }
