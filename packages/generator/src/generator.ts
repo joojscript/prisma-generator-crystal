@@ -8,13 +8,12 @@ import path from 'path'
 import { GENERATOR_NAME } from './constants'
 import { writeFileSafely } from './utils/writeFileSafely'
 import Generators from './generators'
-import { genEnum } from './generators/genEnum'
 
 const { version } = require('../package.json')
 
 generatorHandler({
   onManifest() {
-    logger.info(`${GENERATOR_NAME}:Registered`)
+    logger.info(`${GENERATOR_NAME}: Registered`)
     return {
       version,
       defaultOutput: '../generated',
