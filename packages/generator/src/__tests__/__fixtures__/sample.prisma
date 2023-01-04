@@ -1,12 +1,25 @@
+generator custom_generator {
+  provider = "npx prisma-generator-crystal"
+  output   = "../types"
+}
+
 datasource db {
-  provider = "postgresql"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
 }
 
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
+  id        Int      @id @map("_id")
+  email     String   @unique
+  name      String?
+  createdAt DateTime @default(now())
+}
+
+type UserTest {
+  id        Int
+  email     String
+  name      String?
+  createdAt DateTime
 }
 
 enum NotificationType {
@@ -26,10 +39,4 @@ enum Language {
   Go
   Python
   Cpp
-}
-
-enum State {
-  Active
-  Pending
-  Banned
 }

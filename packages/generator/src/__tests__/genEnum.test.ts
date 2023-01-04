@@ -1,4 +1,4 @@
-import { genEnum } from '../helpers/genEnum'
+import { genEnum } from '../../src/generators/genEnum'
 import { getSampleDMMF } from './__fixtures__/getSampleDMMF'
 
 test('enum generation', async () => {

@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`model generation: User 1`] = `
+"class User
+  property id: Int32
+  property email: String
+  property name: (String | Nil)
+  property createdAt: Time
+end"
+`;
